@@ -1,12 +1,21 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Text;
 
-namespace DcardCrawler.App
+namespace DcardCrawler.Test
 {
-    class Program
+    [TestFixture]
+    public class CrawlerTest
     {
-        static void Main(string[] args)
+        public CrawlerTest()
+        {
+        }
+
+        [Test]
+        public void DcardCrawlerTest()
         {
             HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/f/sex") as HttpWebRequest;
             var response = request.GetResponse();

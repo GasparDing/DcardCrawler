@@ -5,9 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\**" />
-    <EmbeddedResource Remove="Data\**" />
-    <None Remove="Data\**" />
+    <Folder Include="App\Data\Service\" />
+    <Folder Include="Data\Service\" />
   </ItemGroup>
 
 </Project>
