@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DcardCrawler", "DcardCrawler\DcardCrawler.csproj", "{07BF09F3-E643-4DF8-83EE-2B3C4AF4D2F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DcardCrawler.App", "DcardCrawler.App\DcardCrawler.App.csproj", "{0165E87D-D2E9-4362-BD97-E1201B1E5BDF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07BF09F3-E643-4DF8-83EE-2B3C4AF4D2F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07BF09F3-E643-4DF8-83EE-2B3C4AF4D2F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07BF09F3-E643-4DF8-83EE-2B3C4AF4D2F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07BF09F3-E643-4DF8-83EE-2B3C4AF4D2F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0165E87D-D2E9-4362-BD97-E1201B1E5BDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0165E87D-D2E9-4362-BD97-E1201B1E5BDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0165E87D-D2E9-4362-BD97-E1201B1E5BDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0165E87D-D2E9-4362-BD97-E1201B1E5BDF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {58BD6D6E-F73F-4742-B4B8-B07DE0C47198}
+	EndGlobalSection
+EndGlobal
