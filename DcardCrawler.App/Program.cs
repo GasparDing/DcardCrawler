@@ -8,6 +8,7 @@ namespace DcardCrawler.App
     {
         static void Main(string[] args)
         {
+            // hello
             HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/f/sex") as HttpWebRequest;
             var response = request.GetResponse();
             string responseString = null;
