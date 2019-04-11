@@ -16,6 +16,8 @@ namespace DcardCrawler.App
                 using (var streamReader = new StreamReader(stream))
                     responseString = streamReader.ReadToEnd();
             }
+
+            // html 跟 scripts 裡面都有, 但是scripts的好像比較好解
         }
     }
 }
