@@ -1,6 +1,13 @@
-﻿using System;
+﻿using DcardCrawler.App.Data.Model;
+using DcardCrawler.App.Data.Service;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace DcardCrawler.App
 {
@@ -8,16 +15,39 @@ namespace DcardCrawler.App
     {
         static void Main(string[] args)
         {
-            HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/f/sex") as HttpWebRequest;
-            var response = request.GetResponse();
-            string responseString = null;
-            using (var stream = response.GetResponseStream())
+            IReadService readService = new ReadService();
+            var responseString = readService.ReadFromCategory();
+            if (!string.IsNullOrEmpty(responseString))
             {
-                using (var streamReader = new StreamReader(stream))
-                    responseString = streamReader.ReadToEnd();
+                ICollection<StoreViewModel> models = null;
+                try
+                {
+                    models = JsonConvert.DeserializeObject<List<StoreViewModel>>(responseString);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"[{DateTime.Now.ToString("yyyyMMdd HH:mm:ss")}] ErrorMessage: {ex.Message}");
+                }
+
+                // download image
+                if (models != null)
+                {
+                    foreach (var m in models)
+                    {
+                        foreach (var media in m.MediaMeta)
+                        {
+                            WebClient webClient = new WebClient();
+                            webClient.DownloadFile(media.Url, $"./{media.Id}.jpg");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine($"[{DateTime.Now.ToString("yyyyMMdd HH:mm:ss")}] responseString is null");
             }
 
-            // html 跟 scripts 裡面都有, 但是scripts的好像比較好解
+
         }
     }
 }

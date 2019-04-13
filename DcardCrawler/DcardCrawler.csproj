@@ -5,8 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="App\Data\Service\" />
-    <Folder Include="Data\Service\" />
+    <Compile Remove="Data\Service\**" />
+    <EmbeddedResource Remove="Data\Service\**" />
+    <None Remove="Data\Service\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
   </ItemGroup>
 
 </Project>
