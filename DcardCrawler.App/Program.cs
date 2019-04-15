@@ -17,28 +17,28 @@ namespace DcardCrawler.App
             var responseString = readService.ReadFromCategory();
             if (!string.IsNullOrEmpty(responseString))
             {
-                ICollection<StoreViewModel> models = null;
+                ICollection<ListViewModel> models = null;
                 try
                 {
-                    models = JsonConvert.DeserializeObject<List<StoreViewModel>>(responseString);
+                    models = JsonConvert.DeserializeObject<List<ListViewModel>>(responseString);
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"[{DateTime.Now.ToString("yyyyMMdd HH:mm:ss")}] ErrorMessage: {ex.Message}");
                 }
 
-                // download image
-                if (models != null)
-                {
-                    foreach (var m in models)
-                    {
-                        foreach (var media in m.MediaMeta)
-                        {
-                            WebClient webClient = new WebClient();
-                            webClient.DownloadFile(media.Url, $"./{media.Id}.jpg");
-                        }
-                    }
-                }
+                //// testing download image
+                //if (models != null)
+                //{
+                //    foreach (var m in models)
+                //    {
+                //        foreach (var media in m.MediaMeta)
+                //        {
+                //            WebClient webClient = new WebClient();
+                //            webClient.DownloadFile(media.Url, $"./{media.Id}.jpg");
+                //        }
+                //    }
+                //}
             }
             else
             {
