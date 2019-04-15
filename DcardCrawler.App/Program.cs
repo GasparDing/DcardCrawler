@@ -6,8 +6,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace DcardCrawler.App
 {
@@ -46,8 +44,6 @@ namespace DcardCrawler.App
             {
                 Console.WriteLine($"[{DateTime.Now.ToString("yyyyMMdd HH:mm:ss")}] responseString is null");
             }
-
-
         }
     }
 }
