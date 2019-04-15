@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace DcardCrawler.App
 {
@@ -18,6 +19,13 @@ namespace DcardCrawler.App
             }
 
             // html 跟 scripts 裡面都有, 但是scripts的好像比較好解
+
+            MatchCollection TitleMatchs = Regex.Matches(responseString, @"(^<scripts>*$</scripts>)", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            foreach (Match NextMatch in TitleMatchs)
+            {
+                //s = “< br >” NextMatch.Groups[1].Value;
+                //TextBox1.Text = “\n” NextMatch.Groups[1].Value;
+            }
         }
     }
 }
