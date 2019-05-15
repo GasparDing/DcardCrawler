@@ -12,7 +12,8 @@ namespace DcardCrawler.App.Data.Service
     {
         public string ReadFromCategory()
         {
-            HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/_api/forums/sex/posts?popular=false&limit=30") as HttpWebRequest;
+            //HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/_api/forums/sex/posts?popular=false&limit=30") as HttpWebRequest;
+            HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/_api/posts/231223641") as HttpWebRequest;
             var response = request.GetResponse();
             string responseString = null;
             using (var stream = response.GetResponseStream())
