@@ -10,41 +10,18 @@ namespace DcardCrawler.Test
     [TestFixture]
     public class CrawlerTest
     {
+
+        string Id = "231268139";
         public CrawlerTest()
         {
+            
         }
 
         [Test]
-        public void DcardCrawlerTest()
+        public void ListCrawlerTest()
         {
-            //HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/f/sex") as HttpWebRequest;
-            HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/_api/posts/231223641") as HttpWebRequest;
-            WebResponse response = null;
-
-            try
-            {
-                response = request.GetResponse();
-            }
-            catch (WebException e)
-            {
-                if (e.Status == WebExceptionStatus.ProtocolError && e.Response != null)
-                {
-                    var resp = (HttpWebResponse)e.Response;
-                    if (resp.StatusCode == HttpStatusCode.NotFound)
-                    {
-                        // Do something
-                    }
-                    else
-                    {
-                        // Do something else
-                    }
-                }
-                else
-                {
-                    // Do something else
-                }
-            }
-
+            HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/_api/forums/sex/posts?popular=true&limit=30") as HttpWebRequest;
+            var response = request.GetResponse();
             string responseString = null;
             using (var stream = response.GetResponseStream())
             {
@@ -52,5 +29,33 @@ namespace DcardCrawler.Test
                     responseString = streamReader.ReadToEnd();
             }
         }
+
+        [Test]
+        public void PostCrawlerTest()
+        {
+            HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/_api/posts/231268139") as HttpWebRequest;
+            var response = request.GetResponse();
+            string responseString = null;
+            using (var stream = response.GetResponseStream())
+            {
+                using (var streamReader = new StreamReader(stream))
+                    responseString = streamReader.ReadToEnd();
+            }
+        }
+
+         [Test]
+        public void CommentCrawlerTest()
+        {
+            HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/f/sex") as HttpWebRequest;
+            var response = request.GetResponse();
+            string responseString = null;
+            using (var stream = response.GetResponseStream())
+            {
+                using (var streamReader = new StreamReader(stream))
+                    responseString = streamReader.ReadToEnd();
+            }
+        }
+
+
     }
 }
