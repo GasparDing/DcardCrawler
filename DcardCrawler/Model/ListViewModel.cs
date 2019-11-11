@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DcardCrawler.App.Data.Model
+namespace DcardCrawler.Model
 {
     public class MediaViewModel
     {

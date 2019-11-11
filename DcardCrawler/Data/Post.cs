@@ -1,15 +1,15 @@
-﻿using DcardCrawler.App.Data.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace DcardCrawler.App.Data
+namespace DcardCrawler.Data
 {
     public class Post
     {
         public int Id { get; set; }
 
         public string Title { get; set; }
+
+        public string Content { get; set; }
 
         public string Excerpt { get; set; }
 
@@ -32,11 +32,19 @@ namespace DcardCrawler.App.Data
 
         public int LikeCount { get; set; }
 
+        public virtual ICollection<Tag> Tags { get; set; }
+
+        public virtual ICollection<Topic> Topics { get; set; }
+
+        public string SupportedReactions { get; set; }
+
         public bool WithNickname { get; set; }
 
-        public ICollection<string> Tags { get; set; }
+        public string ReportReason { get; set; }
 
-        public ICollection<string> Topics { get; set; }
+        public bool HiddenByAuthor { get; set; }
+
+        public virtual ICollection<Meta> Meta { get; set; }
 
         public string ForumName { get; set; }
 
@@ -47,15 +55,13 @@ namespace DcardCrawler.App.Data
 
         public string ReplyTitle { get; set; }
 
-        public string ReportReason { get; set; }
-
-        public virtual ICollection<MediaMeta> MediaMeta { get; set; }
-
-        //public virtual ICollection<ReactionViewModel> Reactions { get; set; }
+        public bool PersonaSubscriptable { get; set; }
 
         public bool Hidden { get; set; }
 
         public string CustomStyle { get; set; }
+
+        public string Layout { get; set; } // classic
 
         public bool WithImages { get; set; }
 
@@ -63,30 +69,28 @@ namespace DcardCrawler.App.Data
 
         public virtual ICollection<Media> Media { get; set; }
 
+        public string ReportReasonText { get; set; }
+
+        public virtual ICollection<MediaMeta> MediaMeta { get; set; }
+
         public string PostAvatar { get; set; }
-
-        public string Content { get; set; }
-
-        public string SupportedReactions { get; set; }
-
-        public bool HiddenByAuthor { get; set; }
-
-        public bool PersonaSubscriptable { get; set; }
 
         public string Reacted { get; set; }
 
-        public bool Liked { get; set; }
+        //public bool Liked { get; set; }
 
-        public bool Subscribed { get; set; }
+        //public bool Subscribed { get; set; }
 
-        public bool Collected { get; set; }
+        //public bool Collected { get; set; }
 
-        public bool PersonaSubscribed { get; set; }
+        //public bool PersonaSubscribed { get; set; }
 
-        public bool Read { get; set; }
+        //public bool Read { get; set; }
 
-        public bool NewComment { get; set; }
+        //public bool NewComment { get; set; }
 
-        public bool CurrentMember { get; set; }
+        //public bool CurrentMember { get; set; }
+
+        //public virtual ICollection<ReactionViewModel> Reactions { get; set; }
     }
 }

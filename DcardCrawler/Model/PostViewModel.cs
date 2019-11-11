@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace DcardCrawler.App.Data.Model
+namespace DcardCrawler.Model
 {
     public class PostViewModel : ListViewModel
     {

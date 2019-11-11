@@ -1,11 +1,10 @@
-﻿using System;
+﻿using DcardCrawler.Model;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DcardCrawler.App
 {
     public interface IReadService
     {
-        string ReadFromCategory();
+        ICollection<ListViewModel> ReadFromForums();
     }
 }

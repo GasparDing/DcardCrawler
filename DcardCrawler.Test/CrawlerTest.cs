@@ -11,7 +11,7 @@ namespace DcardCrawler.Test
     public class CrawlerTest
     {
 
-        string Id = "231268139";
+        string Id = "232067857";
         public CrawlerTest()
         {
             
@@ -33,7 +33,7 @@ namespace DcardCrawler.Test
         [Test]
         public void PostCrawlerTest()
         {
-            HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/_api/posts/231268139") as HttpWebRequest;
+            HttpWebRequest request = WebRequest.Create($"https://www.dcard.tw/_api/posts/{Id}") as HttpWebRequest;
             var response = request.GetResponse();
             string responseString = null;
             using (var stream = response.GetResponseStream())
@@ -41,12 +41,25 @@ namespace DcardCrawler.Test
                 using (var streamReader = new StreamReader(stream))
                     responseString = streamReader.ReadToEnd();
             }
+
+            //// testing download image
+            //if (models != null)
+            //{
+            //    foreach (var m in models)
+            //    {
+            //        foreach (var media in m.MediaMeta)
+            //        {
+            //            WebClient webClient = new WebClient();
+            //            webClient.DownloadFile(media.Url, $"./{media.Id}.jpg");
+            //        }
+            //    }
+            //}
         }
 
-         [Test]
+        [Test]
         public void CommentCrawlerTest()
         {
-            HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/f/sex") as HttpWebRequest;
+            HttpWebRequest request = WebRequest.Create($"https://www.dcard.tw/_api/posts/{Id}/comments") as HttpWebRequest;
             var response = request.GetResponse();
             string responseString = null;
             using (var stream = response.GetResponseStream())
@@ -55,7 +68,5 @@ namespace DcardCrawler.Test
                     responseString = streamReader.ReadToEnd();
             }
         }
-
-
     }
 }

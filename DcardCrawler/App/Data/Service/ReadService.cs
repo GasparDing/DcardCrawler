@@ -1,28 +1,30 @@
-﻿using System;
+﻿using DcardCrawler.Model;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace DcardCrawler.App.Data.Service
 {
     public class ReadService : IReadService
     {
-        public string ReadFromCategory()
+        public ICollection<ListViewModel> ReadFromForums()
         {
-            //HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/_api/forums/sex/posts?popular=false&limit=30") as HttpWebRequest;
-            HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/_api/posts/231223641") as HttpWebRequest;
-            var response = request.GetResponse();
-            string responseString = null;
-            using (var stream = response.GetResponseStream())
+            ICollection<ListViewModel> models = null;
+
+            var responseString = Common.GetWebResponseString("https://www.dcard.tw/_api/forums/sex/posts?popular=false&limit=30");
+            if (!string.IsNullOrEmpty(responseString))
             {
-                using (var streamReader = new StreamReader(stream))
-                    responseString = streamReader.ReadToEnd();
+                try
+                {
+                    models = JsonConvert.DeserializeObject<List<ListViewModel>>(responseString);
+                }
+                catch (Exception e)
+                {
+                    //todo: 錯誤處理
+                }
             }
 
-            return responseString;
+            return models;
         }
     }
 }
