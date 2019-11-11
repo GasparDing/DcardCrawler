@@ -18,8 +18,11 @@ namespace DcardCrawler.Test
         public void DcardCrawlerTest()
         {
             //HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/f/sex") as HttpWebRequest;
-            HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/_api/posts/231223641") as HttpWebRequest;
+            //HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/_api/posts/231223641") as HttpWebRequest;
+            HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/_api/posts/232044749") as HttpWebRequest;
             WebResponse response = null;
+
+            
 
             try
             {
