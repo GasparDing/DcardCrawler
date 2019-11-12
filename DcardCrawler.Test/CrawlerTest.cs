@@ -1,20 +1,16 @@
 ﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Text;
 
 namespace DcardCrawler.Test
 {
     [TestFixture]
     public class CrawlerTest
     {
+        public string Id = "232067857";
 
-        string Id = "232067857";
         public CrawlerTest()
         {
-            
         }
 
         [Test]
@@ -61,6 +57,44 @@ namespace DcardCrawler.Test
         {
             HttpWebRequest request = WebRequest.Create($"https://www.dcard.tw/_api/posts/{Id}/comments") as HttpWebRequest;
             var response = request.GetResponse();
+            string responseString = null;
+            using (var stream = response.GetResponseStream())
+            {
+                using (var streamReader = new StreamReader(stream))
+                    responseString = streamReader.ReadToEnd();
+            }
+        }
+
+        [Test]
+        public void DcardCrawlerTest()
+        {
+            HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/_api/posts/232044749") as HttpWebRequest;
+            WebResponse response = null;
+
+            try
+            {
+                response = request.GetResponse();
+            }
+            catch (WebException e)
+            {
+                if (e.Status == WebExceptionStatus.ProtocolError && e.Response != null)
+                {
+                    var resp = (HttpWebResponse)e.Response;
+                    if (resp.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        // Do something
+                    }
+                    else
+                    {
+                        // Do something else
+                    }
+                }
+                else
+                {
+                    // Do something else
+                }
+            }
+
             string responseString = null;
             using (var stream = response.GetResponseStream())
             {
