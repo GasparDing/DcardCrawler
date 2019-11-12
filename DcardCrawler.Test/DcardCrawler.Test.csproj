@@ -63,6 +63,12 @@
   <ItemGroup>
     <Content Include="HTMLPage1.html" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DcardCrawler\DcardCrawler.csproj">
+      <Project>{193CCE76-6C40-40BD-8AEC-3810A64693B8}</Project>
+      <Name>DcardCrawler</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

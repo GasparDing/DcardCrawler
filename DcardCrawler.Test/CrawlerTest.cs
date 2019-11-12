@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using DcardCrawler.App;
+using DcardCrawler.App.Data.Service;
+using NUnit.Framework;
 using System.IO;
 using System.Net;
 
@@ -8,22 +10,16 @@ namespace DcardCrawler.Test
     public class CrawlerTest
     {
         public string Id = "232067857";
-
+        private readonly IReadService ReadService;
         public CrawlerTest()
         {
+            this.ReadService = new ReadService();
         }
 
         [Test]
-        public void ListCrawlerTest()
+        public void ReadFromForumsTest()
         {
-            HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/_api/forums/sex/posts?popular=true&limit=30") as HttpWebRequest;
-            var response = request.GetResponse();
-            string responseString = null;
-            using (var stream = response.GetResponseStream())
-            {
-                using (var streamReader = new StreamReader(stream))
-                    responseString = streamReader.ReadToEnd();
-            }
+            var models = this.ReadService.ReadFromForums();
         }
 
         [Test]

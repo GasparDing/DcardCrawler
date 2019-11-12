@@ -7,6 +7,7 @@ namespace DcardCrawler.App.Data.Service
 {
     public class ReadService : IReadService
     {
+        // todo: 目前只能讀30筆，如何連續讀取後面的
         public ICollection<ListViewModel> ReadFromForums()
         {
             ICollection<ListViewModel> models = null;
