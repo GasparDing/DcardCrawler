@@ -87,7 +87,8 @@ namespace DcardCrawler.Model
 
         public bool Hidden { get; set; }
 
-        public string CustomStyle { get; set; }
+        // 目前有的都是贊助文章
+        public object CustomStyle { get; set; }
 
         public bool WithImages { get; set; }
 
