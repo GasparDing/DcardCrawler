@@ -12,7 +12,8 @@ namespace DcardCrawler.App.Data.Service
         {
             ICollection<ListViewModel> models = null;
 
-            var responseString = Common.GetWebResponseString("https://www.dcard.tw/_api/forums/sex/posts?popular=false&limit=30");
+            //var responseString = Common.GetWebResponseString("https://www.dcard.tw/_api/forums/sex/posts?popular=false&limit=30");
+            var responseString = Common.GetWebResponseString("https://www.dcard.tw/_api/posts?popular=true&limit=30");
             if (!string.IsNullOrEmpty(responseString))
             {
                 try
