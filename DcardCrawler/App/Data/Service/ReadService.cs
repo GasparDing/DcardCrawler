@@ -27,5 +27,26 @@ namespace DcardCrawler.App.Data.Service
 
             return models;
         }
+
+        public PostViewModel ReadPost(string id)
+        {
+            var responseString = Common.GetWebResponseString($"https://www.dcard.tw/_api/posts/{id}");
+            if (!string.IsNullOrEmpty(responseString))
+            {
+                PostViewModel model = null;
+                try
+                {
+                    model = JsonConvert.DeserializeObject<PostViewModel>(responseString);
+                }
+                catch (Exception e)
+                {
+                    //todo: 錯誤處理
+                }
+
+                return model;
+            }
+
+            return null;
+        }
     }
 }

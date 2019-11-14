@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DcardCrawler.Data
 {
@@ -7,6 +8,7 @@ namespace DcardCrawler.Data
     // https://docs.microsoft.com/zh-tw/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
     public class Post
     {
+        [Key]
         public int Id { get; set; }
 
         public string Title { get; set; }
