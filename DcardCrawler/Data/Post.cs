@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DcardCrawler.Data
 {
+    // todo: code first entity
+    // https://docs.microsoft.com/zh-tw/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
     public class Post
     {
+        [Key]
         public int Id { get; set; }
 
         public string Title { get; set; }
@@ -72,6 +76,8 @@ namespace DcardCrawler.Data
         public string ReportReasonText { get; set; }
 
         public virtual ICollection<MediaMeta> MediaMeta { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
 
         public string PostAvatar { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace DcardCrawler.Model
@@ -37,7 +38,8 @@ namespace DcardCrawler.Model
     {
         // url: https://www.dcard.tw/_api/posts/231084653
 
-        public int Id { get; set; }
+        [Key]
+        public string Id { get; set; }
 
         public string Title { get; set; }
 
@@ -52,7 +54,7 @@ namespace DcardCrawler.Model
 
         public string ForumId { get; set; }
 
-        public int? ReplyId { get; set; }
+        public string ReplyId { get; set; }
 
         public DateTime CreatedAt { get; set; }
 
@@ -85,7 +87,8 @@ namespace DcardCrawler.Model
 
         public bool Hidden { get; set; }
 
-        public string CustomStyle { get; set; }
+        // 目前有的都是贊助文章
+        public object CustomStyle { get; set; }
 
         public bool WithImages { get; set; }
 

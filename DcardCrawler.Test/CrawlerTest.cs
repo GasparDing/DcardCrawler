@@ -1,7 +1,11 @@
 ﻿using DcardCrawler.App;
 using DcardCrawler.App.Data.Service;
+using DcardCrawler.Model;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 
 namespace DcardCrawler.Test
@@ -9,7 +13,7 @@ namespace DcardCrawler.Test
     [TestFixture]
     public class CrawlerTest
     {
-        public string Id = "232067857";
+        public string Id = "232499265";
         private readonly IReadService ReadService;
         public CrawlerTest()
         {
@@ -23,29 +27,34 @@ namespace DcardCrawler.Test
         }
 
         [Test]
-        public void PostCrawlerTest()
+        public void ReadPostTest()
         {
-            HttpWebRequest request = WebRequest.Create($"https://www.dcard.tw/_api/posts/{Id}") as HttpWebRequest;
-            var response = request.GetResponse();
-            string responseString = null;
-            using (var stream = response.GetResponseStream())
+            var models = new List<PostViewModel>();
+            foreach (var listItem in this.ReadService.ReadFromForums())
             {
-                using (var streamReader = new StreamReader(stream))
-                    responseString = streamReader.ReadToEnd();
+                var model = this.ReadService.ReadPost(listItem.Id);
+                if (model != null)
+                {
+                    //models.Add(model);
+
+                    // test download image
+                    if (model.MediaMeta != null && model.MediaMeta.Count() > 0)
+                    {
+                        if (!Directory.Exists($"C:\\DcardSex\\{model.Id}"))
+                            Directory.CreateDirectory($"C:\\DcardSex\\{ model.Id}");
+
+                        int i = 0;
+                        foreach (var media in model.MediaMeta)
+                        {
+                            WebClient webClient = new WebClient();
+                            webClient.DownloadFile(media.Url, $"C:\\DcardSex\\{ model.Id}\\{model.Id}_{i}.jpg");
+                            i++;
+                        }
+                    }
+                }
             }
 
-            //// testing download image
-            //if (models != null)
-            //{
-            //    foreach (var m in models)
-            //    {
-            //        foreach (var media in m.MediaMeta)
-            //        {
-            //            WebClient webClient = new WebClient();
-            //            webClient.DownloadFile(media.Url, $"./{media.Id}.jpg");
-            //        }
-            //    }
-            //}
+            Console.WriteLine("Finished");
         }
 
         [Test]
@@ -53,44 +62,6 @@ namespace DcardCrawler.Test
         {
             HttpWebRequest request = WebRequest.Create($"https://www.dcard.tw/_api/posts/{Id}/comments") as HttpWebRequest;
             var response = request.GetResponse();
-            string responseString = null;
-            using (var stream = response.GetResponseStream())
-            {
-                using (var streamReader = new StreamReader(stream))
-                    responseString = streamReader.ReadToEnd();
-            }
-        }
-
-        [Test]
-        public void DcardCrawlerTest()
-        {
-            HttpWebRequest request = WebRequest.Create("https://www.dcard.tw/_api/posts/232044749") as HttpWebRequest;
-            WebResponse response = null;
-
-            try
-            {
-                response = request.GetResponse();
-            }
-            catch (WebException e)
-            {
-                if (e.Status == WebExceptionStatus.ProtocolError && e.Response != null)
-                {
-                    var resp = (HttpWebResponse)e.Response;
-                    if (resp.StatusCode == HttpStatusCode.NotFound)
-                    {
-                        // Do something
-                    }
-                    else
-                    {
-                        // Do something else
-                    }
-                }
-                else
-                {
-                    // Do something else
-                }
-            }
-
             string responseString = null;
             using (var stream = response.GetResponseStream())
             {

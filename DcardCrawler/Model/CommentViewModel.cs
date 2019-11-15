@@ -10,7 +10,7 @@ namespace DcardCrawler.Model
 
         public bool Anonymous { get; set; }
 
-        public int PostId { get; set; }
+        public string PostId { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

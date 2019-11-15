@@ -9,8 +9,9 @@ namespace DcardCrawler.Data
     {
         [Key]
         public string Id { get; set; }
-        public bool Anonymous { get; set; }
         public string PostId { get; set; }
+
+        public bool Anonymous { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public int Floor { get; set; }
