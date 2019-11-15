@@ -45,9 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App\Data\Service\Common.cs" />
-    <Compile Include="App\Data\Service\ReadService.cs" />
-    <Compile Include="App\IReadService.cs" />
+    <Compile Include="App\Data\Service\CommentService.cs" />
+    <Compile Include="Data\Service\Common.cs" />
+    <Compile Include="App\Data\Service\PostService.cs" />
+    <Compile Include="App\ICommentService.cs" />
+    <Compile Include="App\IPostService.cs" />
     <Compile Include="Data\Comment.cs" />
     <Compile Include="Data\Media.cs" />
     <Compile Include="Data\MediaMeta.cs" />

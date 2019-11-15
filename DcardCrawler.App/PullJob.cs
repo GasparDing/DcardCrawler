@@ -17,7 +17,7 @@ namespace DcardCrawler.App
 
             // 用舊的留言去撈看有沒有更新，如果有更新就寫一份新的，舊的Backup (可行性測試
 
-            IReadService readService = new ReadService();
+            IPostService readService = new PostService();
             var models = readService.ReadFromForums();
 
             throw new NotImplementedException();

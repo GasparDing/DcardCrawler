@@ -1,6 +1,7 @@
 ﻿using DcardCrawler.App;
 using DcardCrawler.App.Data.Service;
 using DcardCrawler.Model;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -14,28 +15,33 @@ namespace DcardCrawler.Test
     public class CrawlerTest
     {
         public string Id = "232499265";
-        private readonly IReadService ReadService;
+        private readonly IPostService PostService;
+        private readonly ICommentService CommentService;
         public CrawlerTest()
         {
-            this.ReadService = new ReadService();
+            this.PostService = new PostService();
+            this.CommentService = new CommentService();
         }
 
         [Test]
         public void ReadFromForumsTest()
         {
-            var models = this.ReadService.ReadFromForums();
+            var models = this.PostService.ReadFromForums();
         }
 
         [Test]
         public void ReadPostTest()
         {
             var models = new List<PostViewModel>();
-            foreach (var listItem in this.ReadService.ReadFromForums())
+            foreach (var listItem in this.PostService.ReadFromForums())
             {
-                var model = this.ReadService.ReadPost(listItem.Id);
+                var model = this.PostService.ReadPost(listItem.Id);
                 if (model != null)
                 {
+                    Console.WriteLine(model.Id + " Start");
                     //models.Add(model);
+                    if (model.CommentCount > 0)
+                        this.CommentService.ReadFromPost(model.Id, model.CommentCount);
 
                     // test download image
                     if (model.MediaMeta != null && model.MediaMeta.Count() > 0)
@@ -51,6 +57,8 @@ namespace DcardCrawler.Test
                             i++;
                         }
                     }
+
+                    Console.WriteLine(model.Id + " End");
                 }
             }
 
@@ -60,14 +68,7 @@ namespace DcardCrawler.Test
         [Test]
         public void CommentCrawlerTest()
         {
-            HttpWebRequest request = WebRequest.Create($"https://www.dcard.tw/_api/posts/{Id}/comments") as HttpWebRequest;
-            var response = request.GetResponse();
-            string responseString = null;
-            using (var stream = response.GetResponseStream())
-            {
-                using (var streamReader = new StreamReader(stream))
-                    responseString = streamReader.ReadToEnd();
-            }
+            var models = this.CommentService.ReadFromPost("", 1);
         }
     }
 }
