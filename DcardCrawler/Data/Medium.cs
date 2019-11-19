@@ -6,15 +6,14 @@ namespace DcardCrawler.Data
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Topic")]
-    public partial class Topic
+    public partial class Medium
     {
         public int Id { get; set; }
 
-        public string Value { get; set; }
-
         [StringLength(128)]
-        public string Post_Id { get; set; }
+        public string PostId { get; set; }
+
+        public string Url { get; set; }
 
         public virtual Post Post { get; set; }
     }

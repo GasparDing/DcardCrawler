@@ -7,7 +7,8 @@ namespace DcardCrawler.App.Data.Service
 {
     public class ReadService : IReadService
     {
-        // todo: 目前只能讀30筆，如何連續讀取後面的
+        // 如何讀取後面的 : 記住上一次撈的最後一筆Id，在API網址後面加上before
+        // 例如 : https://www.dcard.tw/_api/posts?popular=true&limit=30&before=232498887
         public ICollection<ListViewModel> ReadFromForums()
         {
             ICollection<ListViewModel> models = null;
@@ -22,6 +23,7 @@ namespace DcardCrawler.App.Data.Service
                 }
                 catch (Exception e)
                 {
+
                     //todo: 錯誤處理
                 }
             }

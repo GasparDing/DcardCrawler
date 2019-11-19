@@ -1,0 +1,5 @@
+﻿快取機制
+http://blog.cgmlife.net/posts/2019/03/18/problems-i-met-when-using-the-dcard-api
+
+
+https://www.dcard.tw/_api/posts?popular=true&limit=30&before=232498887

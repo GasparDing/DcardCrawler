@@ -1,15 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
 namespace DcardCrawler.Data
 {
-    // todo: code first entity
-    // https://docs.microsoft.com/zh-tw/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
-    public class Post
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table("Post")]
+    public partial class Post
     {
-        [Key]
-        public int Id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Post()
+        {
+            Comments = new HashSet<Comment>();
+            Media = new HashSet<Medium>();
+            MediaMetas = new HashSet<MediaMeta>();
+            Metas = new HashSet<Meta>();
+            Tags = new HashSet<Tag>();
+            Topics = new HashSet<Topic>();
+        }
+
+        public string Id { get; set; }
 
         public string Title { get; set; }
 
@@ -17,7 +28,6 @@ namespace DcardCrawler.Data
 
         public string Excerpt { get; set; }
 
-        // 隱藏學校
         public bool AnonymousSchool { get; set; }
 
         public bool AnonymousDepartment { get; set; }
@@ -36,10 +46,6 @@ namespace DcardCrawler.Data
 
         public int LikeCount { get; set; }
 
-        public virtual ICollection<Tag> Tags { get; set; }
-
-        public virtual ICollection<Topic> Topics { get; set; }
-
         public string SupportedReactions { get; set; }
 
         public bool WithNickname { get; set; }
@@ -48,13 +54,10 @@ namespace DcardCrawler.Data
 
         public bool HiddenByAuthor { get; set; }
 
-        public virtual ICollection<Meta> Meta { get; set; }
-
         public string ForumName { get; set; }
 
         public string ForumAlias { get; set; }
 
-        // M男 F女 D管理者
         public string Gender { get; set; }
 
         public string ReplyTitle { get; set; }
@@ -65,38 +68,34 @@ namespace DcardCrawler.Data
 
         public string CustomStyle { get; set; }
 
-        public string Layout { get; set; } // classic
+        public string Layout { get; set; }
 
         public bool WithImages { get; set; }
 
         public bool WithVideos { get; set; }
 
-        public virtual ICollection<Media> Media { get; set; }
-
         public string ReportReasonText { get; set; }
-
-        public virtual ICollection<MediaMeta> MediaMeta { get; set; }
-
-        public virtual ICollection<Comment> Comments { get; set; }
 
         public string PostAvatar { get; set; }
 
         public string Reacted { get; set; }
 
-        //public bool Liked { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comments { get; set; }
 
-        //public bool Subscribed { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Medium> Media { get; set; }
 
-        //public bool Collected { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MediaMeta> MediaMetas { get; set; }
 
-        //public bool PersonaSubscribed { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Meta> Metas { get; set; }
 
-        //public bool Read { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tag> Tags { get; set; }
 
-        //public bool NewComment { get; set; }
-
-        //public bool CurrentMember { get; set; }
-
-        //public virtual ICollection<ReactionViewModel> Reactions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Topic> Topics { get; set; }
     }
 }

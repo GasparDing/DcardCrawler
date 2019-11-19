@@ -19,6 +19,8 @@ namespace DcardCrawler.App
 
         public Service1()
         {
+            
+
             InitializeComponent();
 
             scheduler = StdSchedulerFactory.GetDefaultScheduler().GetAwaiter().GetResult();

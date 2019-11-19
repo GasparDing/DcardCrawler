@@ -1,26 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-
 namespace DcardCrawler.Data
 {
-    public class MediaMeta
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table("MediaMeta")]
+    public partial class MediaMeta
     {
-        [Key]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public MediaMeta()
+        {
+            Tags = new HashSet<Tag>();
+        }
+
         public string Id { get; set; }
 
+        [StringLength(128)]
         public string PostId { get; set; }
 
         public string Url { get; set; }
+
         public string NormalizedUrl { get; set; }
+
         public string Thumbnail { get; set; }
+
         public string Type { get; set; }
 
-
         public DateTime CreatedAt { get; set; }
+
         public DateTime UpdatedAt { get; set; }
 
+        [StringLength(128)]
+        public string Comment_Id { get; set; }
+
+        public virtual Comment Comment { get; set; }
+
+        public virtual Post Post { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tag> Tags { get; set; }
     }
 }
