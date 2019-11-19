@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DcardCrawler.App
 {
-    public interface IReadService
+    public interface IPostService
     {
         ICollection<ListViewModel> ReadFromForums();
 

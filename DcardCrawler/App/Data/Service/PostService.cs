@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace DcardCrawler.App.Data.Service
 {
-    public class ReadService : IReadService
+    public class PostService : IPostService
     {
         // 如何讀取後面的 : 記住上一次撈的最後一筆Id，在API網址後面加上before
         // 例如 : https://www.dcard.tw/_api/posts?popular=true&limit=30&before=232498887
@@ -13,8 +13,8 @@ namespace DcardCrawler.App.Data.Service
         {
             ICollection<ListViewModel> models = null;
 
-            //var responseString = Common.GetWebResponseString("https://www.dcard.tw/_api/forums/sex/posts?popular=false&limit=30");
-            var responseString = Common.GetWebResponseString("https://www.dcard.tw/_api/posts?popular=true&limit=30");
+            var responseString = Common.GetWebResponseString("https://www.dcard.tw/_api/forums/sex/posts?popular=false&limit=30");
+            //var responseString = Common.GetWebResponseString("https://www.dcard.tw/_api/posts?popular=true&limit=30");
             if (!string.IsNullOrEmpty(responseString))
             {
                 try
