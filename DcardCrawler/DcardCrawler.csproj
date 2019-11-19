@@ -62,10 +62,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App\Data\Service\Common.cs" />
-    <Compile Include="App\Data\Service\ReadService.cs" />
-    <Compile Include="App\IReadService.cs" />
-    <Compile Include="DAL\Initializer.cs" />
+    <Compile Include="App\Data\Service\CommentService.cs" />
+    <Compile Include="App\Data\Service\PostService.cs" />
+    <Compile Include="App\ICommentService.cs" />
+    <Compile Include="App\IPostService.cs" />
     <Compile Include="Data\Comment.cs" />
     <Compile Include="Data\CrawlerDbContext.cs" />
     <Compile Include="Data\MediaMeta.cs" />
@@ -73,6 +73,7 @@
     <Compile Include="Data\Meta.cs" />
     <Compile Include="Data\Partial\CrawlerDbContext.cs" />
     <Compile Include="Data\Post.cs" />
+    <Compile Include="Data\Service\Common.cs" />
     <Compile Include="Data\Tag.cs" />
     <Compile Include="Data\Topic.cs" />
     <Compile Include="Intial.cs" />

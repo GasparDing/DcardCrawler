@@ -1,7 +1,6 @@
 ﻿using DcardCrawler.App;
 using DcardCrawler.App.Data.Service;
 using DcardCrawler.Model;
-using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
