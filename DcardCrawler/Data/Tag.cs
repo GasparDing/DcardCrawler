@@ -11,13 +11,13 @@ namespace DcardCrawler.Data
     {
         public int Id { get; set; }
 
+        [StringLength(50)]
+        public string PostId { get; set; }
+
+        [StringLength(50)]
+        public string MediaMetaId { get; set; }
+
         public string Value { get; set; }
-
-        [StringLength(128)]
-        public string MediaMeta_Id { get; set; }
-
-        [StringLength(128)]
-        public string Post_Id { get; set; }
 
         public virtual MediaMeta MediaMeta { get; set; }
 

@@ -15,10 +15,14 @@ namespace DcardCrawler.Data
             Tags = new HashSet<Tag>();
         }
 
+        [StringLength(50)]
         public string Id { get; set; }
 
-        [StringLength(128)]
+        [StringLength(50)]
         public string PostId { get; set; }
+
+        [StringLength(50)]
+        public string CommentId { get; set; }
 
         public string Url { get; set; }
 
@@ -31,9 +35,6 @@ namespace DcardCrawler.Data
         public DateTime CreatedAt { get; set; }
 
         public DateTime UpdatedAt { get; set; }
-
-        [StringLength(128)]
-        public string Comment_Id { get; set; }
 
         public virtual Comment Comment { get; set; }
 

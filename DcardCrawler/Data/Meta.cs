@@ -9,21 +9,17 @@ namespace DcardCrawler.Data
     [Table("Meta")]
     public partial class Meta
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Meta()
-        {
-            Comments = new HashSet<Comment>();
-        }
-
         public int Id { get; set; }
 
-        [StringLength(128)]
+        [StringLength(50)]
         public string PostId { get; set; }
+
+        [StringLength(50)]
+        public string CommentId { get; set; }
 
         public string Layout { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual Comment Comment { get; set; }
 
         public virtual Post Post { get; set; }
     }

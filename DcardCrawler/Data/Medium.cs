@@ -10,7 +10,7 @@ namespace DcardCrawler.Data
     {
         public int Id { get; set; }
 
-        [StringLength(128)]
+        [StringLength(50)]
         public string PostId { get; set; }
 
         public string Url { get; set; }

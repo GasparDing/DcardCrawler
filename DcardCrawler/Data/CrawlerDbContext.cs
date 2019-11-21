@@ -18,29 +18,57 @@ namespace DcardCrawler.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Comment>()
-                .HasMany(e => e.MediaMetas)
-                .WithOptional(e => e.Comment)
-                .HasForeignKey(e => e.Comment_Id);
+                .Property(e => e.Id)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Comment>()
+                .Property(e => e.PostId)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Medium>()
+                .Property(e => e.PostId)
+                .IsUnicode(false);
 
             modelBuilder.Entity<MediaMeta>()
-                .HasMany(e => e.Tags)
-                .WithOptional(e => e.MediaMeta)
-                .HasForeignKey(e => e.MediaMeta_Id);
+                .Property(e => e.Id)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MediaMeta>()
+                .Property(e => e.PostId)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<MediaMeta>()
+                .Property(e => e.CommentId)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Meta>()
-                .HasMany(e => e.Comments)
-                .WithOptional(e => e.Meta)
-                .HasForeignKey(e => e.Meta_Id);
+                .Property(e => e.PostId)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Meta>()
+                .Property(e => e.CommentId)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Post>()
-                .HasMany(e => e.Tags)
-                .WithOptional(e => e.Post)
-                .HasForeignKey(e => e.Post_Id);
+                .Property(e => e.Id)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Post>()
                 .HasMany(e => e.Topics)
-                .WithOptional(e => e.Post)
-                .HasForeignKey(e => e.Post_Id);
+                .WithMany(e => e.Posts)
+                .Map(m => m.ToTable("PostTopic").MapLeftKey("PostId").MapRightKey("TopicId"));
+
+            modelBuilder.Entity<Tag>()
+                .Property(e => e.PostId)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Tag>()
+                .Property(e => e.MediaMetaId)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Topic>()
+                .Property(e => e.Id)
+                .IsUnicode(false);
         }
     }
 }

@@ -20,6 +20,7 @@ namespace DcardCrawler.Data
             Topics = new HashSet<Topic>();
         }
 
+        [StringLength(50)]
         public string Id { get; set; }
 
         public string Title { get; set; }

@@ -40,7 +40,9 @@ namespace DcardCrawler.Test
                     Console.WriteLine(model.Id + " Start");
                     //models.Add(model);
                     if (model.CommentCount > 0)
-                        this.CommentService.ReadFromPost(model.Id, model.CommentCount);
+                    {
+                        var models2 = this.CommentService.ReadFromPost(model.Id, model.CommentCount);
+                    }
 
                     // test download image
                     if (model.MediaMeta != null && model.MediaMeta.Count() > 0)

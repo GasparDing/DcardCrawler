@@ -13,11 +13,13 @@ namespace DcardCrawler.Data
         public Comment()
         {
             MediaMetas = new HashSet<MediaMeta>();
+            Metas = new HashSet<Meta>();
         }
 
+        [StringLength(50)]
         public string Id { get; set; }
 
-        [StringLength(128)]
+        [StringLength(50)]
         public string PostId { get; set; }
 
         public bool Anonymous { get; set; }
@@ -52,13 +54,12 @@ namespace DcardCrawler.Data
 
         public string PostAvatar { get; set; }
 
-        public int? Meta_Id { get; set; }
-
-        public virtual Meta Meta { get; set; }
-
         public virtual Post Post { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MediaMeta> MediaMetas { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Meta> Metas { get; set; }
     }
 }
