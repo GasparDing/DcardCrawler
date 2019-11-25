@@ -1,7 +1,11 @@
-﻿using DcardCrawler.Model;
+﻿using AutoMapper;
+using DcardCrawler.Data;
+using DcardCrawler.Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using AutoMapper.QueryableExtensions;
 
 namespace DcardCrawler.App.Data.Service
 {
@@ -46,10 +50,13 @@ namespace DcardCrawler.App.Data.Service
                     //todo: 錯誤處理
                 }
 
+                var entity = Initial.Mapper.Map<Post>(model);
+
                 return model;
             }
 
             return null;
         }
     }
+
 }

@@ -1,5 +1,6 @@
 ﻿using DcardCrawler.App;
 using DcardCrawler.App.Data.Service;
+using DcardCrawler.Data;
 using DcardCrawler.Model;
 using NUnit.Framework;
 using System;
@@ -20,6 +21,7 @@ namespace DcardCrawler.Test
         {
             this.PostService = new PostService();
             this.CommentService = new CommentService();
+            Initial.AutoMapper();
         }
 
         [Test]
