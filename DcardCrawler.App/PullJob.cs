@@ -11,11 +11,16 @@ namespace DcardCrawler.App
         {
             IPostService postService = new PostService();
 
-            // 撈取新文章，創建時間為一次interval 之前的，直接把內容都撈回來儲存
-            var posts = postService.ReadFromForums();
-            foreach (var post in posts) { }
-                // save to db
-            
+            // 撈取新文章List，創建時間為一次interval 之前的，直接把內容都撈回來儲存
+            var list = postService.ReadFromForums();
+            // 撈取Post 並寫到
+            foreach (var item in list)
+            {
+                var post = postService.ReadPost(item.Id);
+                postService.Create(post);
+            }
+
+
 
             // 用舊的文章去看有沒有更新，如果有更新就寫一份新的，舊的Backup (可行性測試
 
