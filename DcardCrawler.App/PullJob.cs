@@ -17,7 +17,7 @@ namespace DcardCrawler.App
             foreach (var item in list)
             {
                 var post = postService.ReadPost(item.Id);
-                postService.Create(post);
+                postService.Create(null);
             }
 
 

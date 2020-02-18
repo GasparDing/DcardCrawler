@@ -11,6 +11,32 @@ namespace DcardCrawler.App.Data.Service
 {
     public class PostService : IPostService
     {
+        public bool Create(PostViewModel model)
+        {
+            var context = new CrawlerDbContext();
+            var post = context.Posts.SingleOrDefault(p => p.Id == model.Id);
+            if (post != null)
+                return false;
+
+            //Mapper.CreateMap<PostViewModel, Post>();
+            var entity = new Post
+            {
+                Id = model.Id,
+                Title = model.Title,
+
+            };
+
+            bool result = false;
+            try
+            {
+                context.SaveChanges();
+                result = true;
+            }
+            catch { }
+
+            return result;
+        }
+
         // 如何讀取後面的 : 記住上一次撈的最後一筆Id，在API網址後面加上before
         // 例如 : https://www.dcard.tw/_api/posts?popular=true&limit=30&before=232498887
         public ICollection<ListViewModel> ReadFromForums()
