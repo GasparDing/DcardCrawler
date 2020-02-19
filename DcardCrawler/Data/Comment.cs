@@ -12,6 +12,7 @@ namespace DcardCrawler.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Comment()
         {
+            CommentHistories = new HashSet<CommentHistory>();
             MediaMetas = new HashSet<MediaMeta>();
             Metas = new HashSet<Meta>();
         }
@@ -53,6 +54,9 @@ namespace DcardCrawler.Data
         public string ReportReasonText { get; set; }
 
         public string PostAvatar { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CommentHistory> CommentHistories { get; set; }
 
         public virtual Post Post { get; set; }
 

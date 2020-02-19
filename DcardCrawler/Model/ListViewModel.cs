@@ -81,6 +81,8 @@ namespace DcardCrawler.Model
 
         public string ReportReason { get; set; }
 
+        public string ReportReasonText { get; set; }
+
         public ICollection<MediaMetaViewModel> MediaMeta { get; set; }
 
         public ICollection<ReactionViewModel> Reactions { get; set; }

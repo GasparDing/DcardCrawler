@@ -9,8 +9,28 @@ using AutoMapper.QueryableExtensions;
 
 namespace DcardCrawler.App.Data.Service
 {
-    public class PostService : IPostService
+    public class PostService : IApiService<string, PostViewModel>, IPostService
     {
+        public bool Create(PostViewModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICollection<PostViewModel> Read()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool? Update(string key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool? Delete(string key)
+        {
+            throw new NotImplementedException();
+        }
+
         // 如何讀取後面的 : 記住上一次撈的最後一筆Id，在API網址後面加上before
         // 例如 : https://www.dcard.tw/_api/posts?popular=true&limit=30&before=232498887
         public ICollection<ListViewModel> ReadFromForums()
@@ -44,13 +64,13 @@ namespace DcardCrawler.App.Data.Service
                 try
                 {
                     model = JsonConvert.DeserializeObject<PostViewModel>(responseString);
+                    var entity = Initial.Mapper.Map<Post>(model);
                 }
                 catch (Exception e)
                 {
                     //todo: 錯誤處理
                 }
 
-                var entity = Initial.Mapper.Map<Post>(model);
 
                 return model;
             }
@@ -58,5 +78,4 @@ namespace DcardCrawler.App.Data.Service
             return null;
         }
     }
-
 }

@@ -11,6 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DcardCrawler.App", "DcardCr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DcardCrawler", "DcardCrawler\DcardCrawler.csproj", "{193CCE76-6C40-40BD-8AEC-3810A64693B8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{8500CF32-E96A-4CF6-B65D-08ECCE795587}"
+	ProjectSection(SolutionItems) = preProject
+		CrawlerMS.sql = CrawlerMS.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

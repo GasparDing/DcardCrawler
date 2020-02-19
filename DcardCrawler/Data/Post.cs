@@ -16,6 +16,7 @@ namespace DcardCrawler.Data
             Media = new HashSet<Medium>();
             MediaMetas = new HashSet<MediaMeta>();
             Metas = new HashSet<Meta>();
+            PostHistories = new HashSet<PostHistory>();
             Tags = new HashSet<Tag>();
             Topics = new HashSet<Topic>();
         }
@@ -92,6 +93,9 @@ namespace DcardCrawler.Data
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Meta> Metas { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PostHistory> PostHistories { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tag> Tags { get; set; }

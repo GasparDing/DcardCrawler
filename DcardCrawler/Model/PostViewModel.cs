@@ -13,7 +13,7 @@ namespace DcardCrawler.Model
 
         public bool HiddenByAuthor { get; set; }
 
-        public bool? PersonaSubscriptable { get; set; }
+        public bool PersonaSubscriptable { get; set; }
 
         public string Reacted { get; set; }
 
