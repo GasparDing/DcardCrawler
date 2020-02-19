@@ -13,7 +13,28 @@ namespace DcardCrawler.App.Data.Service
     {
         public bool Create(PostViewModel model)
         {
-            throw new NotImplementedException();
+            var context = new CrawlerDbContext();
+            var post = context.Posts.SingleOrDefault(p => p.Id == model.Id);
+            if (post != null)
+                return false;
+
+            //Mapper.CreateMap<PostViewModel, Post>();
+            var entity = new Post
+            {
+                Id = model.Id,
+                Title = model.Title,
+
+            };
+
+            bool result = false;
+            try
+            {
+                context.SaveChanges();
+                result = true;
+            }
+            catch { }
+
+            return result;
         }
 
         public ICollection<PostViewModel> Read()
@@ -38,7 +59,6 @@ namespace DcardCrawler.App.Data.Service
             ICollection<ListViewModel> models = null;
 
             var responseString = Common.GetWebResponseString("https://www.dcard.tw/_api/forums/sex/posts?popular=false&limit=30");
-            //var responseString = Common.GetWebResponseString("https://www.dcard.tw/_api/posts?popular=true&limit=30");
             if (!string.IsNullOrEmpty(responseString))
             {
                 try
@@ -70,7 +90,6 @@ namespace DcardCrawler.App.Data.Service
                 {
                     //todo: 錯誤處理
                 }
-
 
                 return model;
             }

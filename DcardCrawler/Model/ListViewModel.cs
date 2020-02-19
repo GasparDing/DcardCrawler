@@ -7,6 +7,10 @@ namespace DcardCrawler.Model
 {
     public class MediaViewModel
     {
+        public int Id { get; set; }
+        
+        public string PostId { get; set; }
+
         public string Url { get; set; }
     }
 
@@ -20,6 +24,10 @@ namespace DcardCrawler.Model
     public class MediaMetaViewModel
     {
         public string Id { get; set; }
+
+        public string PostId { get; set; }
+
+        public string CommentId { get; set; }
 
         public string Url { get; set; }
 
