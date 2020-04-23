@@ -1,4 +1,5 @@
 ﻿using DcardCrawler.App.Data.Service;
+using DcardCrawler.Model;
 using Quartz;
 using System;
 using System.Threading.Tasks;
@@ -9,7 +10,9 @@ namespace DcardCrawler.App
     {
         public Task Execute(IJobExecutionContext context)
         {
-            IPostService postService = new PostService();
+            var service = new PostService();
+            IPostService postService = service;
+            IApiService<string, PostViewModel> postApiService = service;
 
             // 撈取新文章List，創建時間為一次interval 之前的，直接把內容都撈回來儲存
             var list = postService.ReadFromForums();
@@ -17,7 +20,7 @@ namespace DcardCrawler.App
             foreach (var item in list)
             {
                 var post = postService.ReadPost(item.Id);
-                postService.Create(null);
+                postApiService.Create(null);
             }
 
 

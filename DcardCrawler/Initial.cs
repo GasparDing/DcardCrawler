@@ -20,18 +20,15 @@ namespace DcardCrawler
         {
             var configuration = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Tag, TagViewModel>();
-                cfg.CreateMap<TagViewModel, Tag>();
-
+                cfg.CreateMap<CommentViewModel, Comment>();
+                cfg.CreateMap<Comment, CommentViewModel>();
+                cfg.CreateMap<MediaViewModel, Medium>();
                 cfg.CreateMap<MediaMeta, MediaMetaViewModel>();
                 cfg.CreateMap<MediaMetaViewModel, MediaMeta>()
                     .ForMember(e => e.Tags, m => m.MapFrom(x => x.Tags.Select(t => new Tag { Value = t })));
 
-                cfg.CreateMap<Medium, MediaViewModel>();
-                cfg.CreateMap<MediaViewModel, Medium>();
-
-                cfg.CreateMap<Topic, TopicViewModel>();
                 cfg.CreateMap<TopicViewModel, Topic>();
+                cfg.CreateMap<Topic, TopicViewModel>();
 
                 cfg.CreateMap<Post, PostViewModel>();
                 cfg.CreateMap<PostViewModel, Post>()
@@ -40,8 +37,11 @@ namespace DcardCrawler
                     .ForMember(e => e.MediaMetas, m => m.MapFrom(x => x.MediaMeta.Select(t => new MediaMeta { Url = t.Url })))
                     .ForMember(e => e.Topics, m => m.MapFrom(x => x.Topics.Select(t => new Topic { Value = t })));
 
-                //cfg.CreateMap<Comment, CommentViewModel>();
-                //cfg.CreateMap<Topic, TopicViewModel>();
+                cfg.CreateMap<TagViewModel, Tag>();
+                cfg.CreateMap<Tag, TagViewModel>();
+
+                cfg.CreateMap<TopicViewModel, Topic>();
+                cfg.CreateMap<Topic, TopicViewModel>();
             });
 
 # if DEBUG

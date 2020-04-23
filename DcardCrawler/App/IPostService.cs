@@ -8,7 +8,5 @@ namespace DcardCrawler.App
         ICollection<ListViewModel> ReadFromForums();
 
         PostViewModel ReadPost(string id);
-
-        bool Create(PostViewModel model);
     }
 }
